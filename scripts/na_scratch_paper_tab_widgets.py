@@ -39,6 +39,7 @@ class ScriptWidget(QtWidgets.QWidget):
         self.scroll.widget().setLayout(self.body_lwt)
 
         self.filter_keys = []
+        self.functions = {}
         self.simple = True
         self.data = data
 
@@ -64,7 +65,7 @@ class ScriptWidget(QtWidgets.QWidget):
             self.body_lwt.addWidget(lbl)
             return
 
-        functions = []
+        self.functions.clear()
         # Everything needs to have a unique name or else things appear to stack. Not a huge imp guru, so might be wrong
         name = '{}_{}'.format(os.path.basename(self.data['script']), time.ctime())
         for char in filter(lambda x: not x.isalnum(), name):
@@ -75,56 +76,78 @@ class ScriptWidget(QtWidgets.QWidget):
             source = inspect.getmembers(module)
             for name, member in source:
                 if callable(member):
-                    functions.append([name, member])
+                    self.functions[name] = member
 
             instructions = filter(lambda x: x[0] == 'sp_instructions', source)
             if instructions:
-                self.build_body_advanced(functions, instructions[0][1])
+                self.homogenize_function_instructions(instructions[0][1])
+                self.build_body_advanced(instructions[0][1])
             else:
-                self.build_body_simple(functions)
+                self.build_body_simple()
         except:
             self.build_stack_trace()
 
         self.filter(self.filter_keys)
 
-    def build_body_simple(self, functions):
+    def get_saved_vals(self, widgets, frame_label, saved):
+        """
+        Fills out widgets to saved data. First searches for label. In case of duplicates, does <widget type>_index
+        Args:
+            widgets (list): List of widgets in the frame
+            frame_label (str): The label for the frame
+            saved (dict): Saved value data from preferences
+        """
+        if not widgets:
+            return
+
+        if frame_label in saved:
+            labels, types, vals = zip(*saved[frame_label])
+
+            for widget in widgets:
+                if widget.data.get('save') and widget.data.get('label') in labels:
+                    label = widget.data.get('label')
+                    if labels.count(label) == 1:
+                        widget.set_val(vals[labels.index(label)])
+                    else:
+                        like = [w for w in widgets if w.data['type'] == widget.data['type'] and widget.data.get('save')]
+                        widget.set_val(vals[like.index(widget)])
+
+    def build_body_simple(self):
         """
         In the case of a file that isn't marked up for advanced layout, this will simply create buttons for each
         function in the script unless the docstring starts with "scratch_exclude"
         Args:
-            functions (list): List of functions found in the script file
         """
-        for name, function in functions:
-            if function.__doc__:
-                if function.__doc__.lstrip().startswith('scratch_exclude'):
+        for name in sorted(self.functions):
+            if self.functions[name].__doc__:
+                if self.functions[name].__doc__.lstrip().startswith('scratch_exclude'):
                     continue
 
             if name in self.data.get('excluded', []):
                 continue
 
-            self.func_button({'label': function.__name__}, function)
+            self.func_button({'label': self.functions[name].__name__}, self.functions[name])
         self.body_lwt.addStretch()
 
-    def build_body_advanced(self, functions, instructions):
+    def build_body_advanced(self, instructions):
         """
         Builds a more custom tab according to instructions in the file
         Args:
-            functions (list): List of functions found in the script file
             instructions (dict): Instructions for the build such as settings, and widgets
         """
         self.simple = False
-        functions = dict(functions)
         settings = instructions.get('settings', {})
         saved = self.data.get('saved', {})
 
+        self.setToolTip(instructions.get('toolTip'))
         self.set_palette(self.scroll.widget(), QtGui.QPalette.Background, rgb=settings.get('color'),
                          image=settings.get('image'))
 
         for group in instructions['contents']:
             if 'simple' in group:
                 if 'label' not in group:
-                    group['label'] = group['simple']
-                self.func_button(group, functions[group['simple']])
+                    group['label'] = group['simple'].__name__
+                self.func_button(group, group['simple'])
                 continue
 
             frame = QtWidgets.QFrame(self)
@@ -147,7 +170,7 @@ class ScriptWidget(QtWidgets.QWidget):
                 previous_layout = btn_lwt if btn.get('share') else None
 
                 lwt.addLayout(btn_lwt)
-                self.func_button(data=btn, function=functions[btn['function']], layout=btn_lwt, input_widgets=widgets)
+                self.func_button(data=btn, function=btn['function'], layout=btn_lwt, input_widgets=widgets)
 
             self.body_lwt.addWidget(frame)
             self.body_lwt.addSpacing(10)
@@ -160,6 +183,7 @@ class ScriptWidget(QtWidgets.QWidget):
         Args:
             parent (QtWidgets.QWidget): Parent Widget
             inputs (list): List of dictionaries containing applicable data for the widgets
+            saved (dict): Saved value data from preferences
         Returns:
             widgets (tuple): Tuple of newly created input widgets
         """
@@ -181,14 +205,48 @@ class ScriptWidget(QtWidgets.QWidget):
             previous_layout = widget.lwt if i.get('share') else None
             widgets.append(widget)
 
-            # print '"{}":'.format(i['type']), widget.allowed_data, widget.__class__.__name__  # Another doc helper
-
-            # Set any saved values
-            val = saved.get(parent.findChildren(QtWidgets.QLabel)[0].text(), {}).get(i.get('label'))
-            if val is not None:
-                widget.set_val(val)
-
+        self.get_saved_vals(widgets, parent.findChildren(QtWidgets.QLabel)[0].text(), saved)
         return tuple(widgets)
+
+    def homogenize_function_instructions(self, instructions):
+        """
+        Checks data against fuctions. In order to allow the user to pass in strings or callables in instructions, this
+        will parse it all and turn it in functions.
+        Args:
+            instructions (dict): Instructions for the build such as settings, and widgets
+        """
+        not_found = None
+        for i, group in enumerate(instructions['contents']):
+            if group.get('simple'):
+                instructions['contents'][i]['simple'] = self.str_to_func(instructions['contents'][i]['simple'])
+
+            for j in range(len(group.get('buttons', []))):
+                instruction = instructions['contents'][i]['buttons'][j]['function']
+                instructions['contents'][i]['buttons'][j]['function'] = self.str_to_func(instruction)
+
+            for j in range(len(group.get('inputWidgets', []))):
+                if 'buttonCommand' in instructions['contents'][i]['inputWidgets'][j]:
+                    instruction = instructions['contents'][i]['inputWidgets'][j]['buttonCommand']
+                    instructions['contents'][i]['inputWidgets'][j]['buttonCommand'] = self.str_to_func(instruction)
+
+        if not_found:
+            raise RuntimeError('{} not found in functions/callables in the script'.format(not_found))
+        
+    def str_to_func(self, instruction):
+        """
+        Takes an instruction for a function, and converts it to a function if it's the string name.
+        Args:
+            instruction: 
+        Returns:
+            function (callable): The function that's called for by the string (returns instruction if it was a callable)
+        """
+        if callable(instruction):
+            return instruction
+        else:
+            if instruction in self.functions:
+                return self.functions[instruction]
+            else:
+                raise RuntimeError('{} not found in functions/callables in the script'.format(instruction))
 
     def func_button(self, data, function, layout=None, input_widgets=()):
         """
@@ -381,11 +439,15 @@ class ScriptWidget(QtWidgets.QWidget):
                     if widget.data.get('save'):
                         frame_label = child.data.get('label', '')
                         if frame_label not in self.data['saved']:
-                            self.data['saved'][frame_label] = {}
+                            self.data['saved'][frame_label] = []
 
                         child.data['eval'] = False
-                        widget.simple_output = True
-                        self.data['saved'][frame_label][widget.data.get('label' '')] = widget.read()
+                        widget.save_read = True
+                        widget_data = []
+                        widget_data.append(widget.data.get('label' ''))
+                        widget_data.append(widget.data.get('type' ''))
+                        widget_data.append(widget.read())
+                        self.data['saved'][frame_label].append(widget_data)
 
 
 class InputBase(QtWidgets.QWidget):
@@ -412,7 +474,7 @@ class InputBase(QtWidgets.QWidget):
             self.lwt.addWidget(QtWidgets.QLabel(data['label']))
 
         self.allowed_data = ['type', 'label', 'toolTip', 'color', 'share', 'save']
-        self.simple_output = False
+        self.save_read = False
         self.data = data
 
     def set_color(self):
@@ -559,7 +621,7 @@ class LineEdit(InputBase):
         Returns:
             txt (str): The validated text
         """
-        return txt
+        return str(txt)
 
     def safe_eval(self, text):
         """
@@ -575,7 +637,7 @@ class LineEdit(InputBase):
 
         else:
             try:
-                return eval(text)
+                return eval(text) if text else ''
             except:
                 info = sys.exc_info()
                 err_txt = 'Error Occured when reading the "{}" Text Field\n'.format(self.data.get('label', ''))
@@ -596,6 +658,9 @@ class LineEdit(InputBase):
         Returns:
             text (str): The text in the lineEdit
         """
+        if self.save_read:
+            return str(self.le.text())
+
         if self.data.get('errorIfEmpty'):
             if not self.le.text():
                 raise ValueError('Text Field is Empty')
@@ -627,14 +692,16 @@ class CmdLineEdit(LineEdit):
 
         self.button.clicked.connect(self.button_command_validate)
 
-        self.lwt.insertWidget(1, self.button)
+        self.lwt.insertWidget(self.lwt.indexOf(self.le), self.button)
         self.widget_color_info.append((self.button, QtGui.QPalette.Button))
 
     def button_command_validate(self):
         """
         Command to run "button_command" and set the lineEdit text if a value was returned
         """
-        self.set_val(self.button_command())
+        ret = self.button_command()
+        if ret is not None:
+            self.set_val(ret)
 
     def button_command(self):
         """
@@ -642,7 +709,8 @@ class CmdLineEdit(LineEdit):
         Returns:
             val (str): The return value from the command to write to the lineEdit
         """
-        raise NotImplementedError('buttonCommand data key must be set to a callable function.')
+        raise NotImplementedError('buttonCommand data key must be set to a callable function '
+                                  'or the string name of a function in the script.')
 
 
 class Browse(CmdLineEdit):
@@ -766,6 +834,7 @@ class SelectionMulti(Selection):
         Gets all selected items and applies it to the lineEdit
         """
         import pymel.core as pm
+
         if not pm.selected():
             pm.warning('Nothing Selected')
             return
@@ -802,15 +871,7 @@ class SelectionMulti(Selection):
             if not self.le.text():
                 raise RuntimeError('Field is Empty')
 
-        txt = ''
-        for i in self.le.text().split(','):
-            name = i.strip()
-            if not (name.startswith('"') and name.endswith('"')) or (name.startswith('\'') and name.endswith('\'')):
-                name = '\'{}\''.format(name)
-
-            txt += '{}, '.format(name)
-
-        return self.safe_eval(txt)
+        return [each.strip() for each in self.le.text().split(',')]
 
 
 class PyNode(Selection):
@@ -830,8 +891,9 @@ class PyNode(Selection):
         """
         Gets all selected items and applies it to the lineEdit
         """
-        node = super(PyNode, self).button_command()
         import pymel.core as pm
+        node = super(PyNode, self).button_command()
+
         if node:
             self.node = pm.selected()[0]
             return self.node.nodeName()
@@ -842,14 +904,14 @@ class PyNode(Selection):
         Returns:
             node (PyNode): PyMEL instance of the node
         """
+        if self.save_read:
+            return str(self.le.text())
+
         if self.data.get('errorIfEmpty'):
             if not self.le.text():
                 raise RuntimeError('Field is Empty')
 
-        if self.simple_output:
-            return str(self.le.text())
-        else:
-            return self.node
+        return self.node
 
 
 class PyNodeMulti(SelectionMulti):
@@ -862,14 +924,16 @@ class PyNodeMulti(SelectionMulti):
             layout (QtWidgets.QLayout): Parent layout
         """
         super(PyNodeMulti, self).__init__(parent, data, layout)
+        self.le.setReadOnly(True)
         self.nodes = None
 
     def button_command(self):
         """
         Gets all selected items and applies it to the lineEdit
         """
-        nodes = super(PyNodeMulti, self).button_command()
         import pymel.core as pm
+        nodes = super(PyNodeMulti, self).button_command()
+
         if nodes:
             self.nodes = pm.selected()
             return nodes
@@ -880,14 +944,14 @@ class PyNodeMulti(SelectionMulti):
         Returns:
             nodes (list): List of PyMEL instances of the nodes
         """
+        if self.save_read:
+            return str(self.le.text())
+
         if self.data.get('errorIfEmpty'):
             if not self.le.text():
                 raise RuntimeError('Field is Empty')
 
-        if self.simple_output:
-            return str(self.le.text())
-        else:
-            return self.nodes
+        return self.nodes
 
 
 class IntSpinner(InputBase):

@@ -14,7 +14,7 @@ import shiboken2
 
 import na_scratch_paper_child_widgets as child_widgets
 import na_scratch_paper_tab_widgets as tab_widgets
-reload(tab_widgets)
+# reload(tab_widgets)
 
 
 class ScratchPaperWidget(QtWidgets.QMainWindow):
@@ -49,17 +49,6 @@ class ScratchPaperWidget(QtWidgets.QMainWindow):
         help_menu.addAction('Script Markup Quick-Reference', lambda: child_widgets.AdvQuickRef(self).show())
         help_menu.addAction('Scratch Paper Documentation')
 
-        self.refresh_btn = QtWidgets.QPushButton(u'⟳'.encode('utf-8'), self)
-        self.refresh_btn.move(0, 10)
-        self.refresh_btn.setToolTip('Refreshes the tabs (if the source scripts have been updated)')
-
-        font = self.refresh_btn.font()
-        font.setPixelSize(font.pixelSize()*1.5)
-        self.refresh_btn.setFixedSize(font.pixelSize()*1.5, font.pixelSize()*1.5)
-
-        self.refresh_btn.setFont(font)
-        self.refresh_btn.clicked.connect(self.populate_tabs)
-
         # Body
         self.setCentralWidget(QtWidgets.QWidget())
         body_lwt = QtWidgets.QVBoxLayout()
@@ -70,6 +59,17 @@ class ScratchPaperWidget(QtWidgets.QMainWindow):
         body_lwt.addWidget(line)
         line.setFrameShape(QtWidgets.QFrame.HLine)
         line.setFrameShadow(QtWidgets.QFrame.Sunken)
+
+        self.refresh_btn = QtWidgets.QPushButton(u'⟳'.encode('utf-8'), self)
+        self.refresh_btn.move(0, 10)
+        self.refresh_btn.setToolTip('Refreshes the tabs (if the source scripts have been updated)')
+
+        font = self.refresh_btn.font()
+        font.setPixelSize(font.pixelSize() * 1.5)
+        self.refresh_btn.setFixedSize(font.pixelSize() * 1.5, font.pixelSize() * 1.5)
+
+        self.refresh_btn.setFont(font)
+        self.refresh_btn.clicked.connect(self.populate_tabs)
 
         self.search_le = QtWidgets.QLineEdit(self.centralWidget())
         self.search_le.textChanged.connect(self.filter)

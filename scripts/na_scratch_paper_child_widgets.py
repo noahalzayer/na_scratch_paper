@@ -10,7 +10,6 @@ from PySide2 import QtWidgets, QtCore, QtGui
 
 import na_scratch_paper_tab_widgets as tab_widgets
 
-
 class AdvQuickRef(QtWidgets.QWidget):
     """
     Window for quick reference on marking up modules for advanced tabs
@@ -139,256 +138,573 @@ class AdvQuickRef(QtWidgets.QWidget):
               '</span></p></body></html>'
         body_lwt.addWidget(self.wrapping_label(txt))
         
-        txt = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><h' \
-              'ead><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</styl' \
-              'e></head><body style=" font-family:\'MS Shell Dlg 2\'; font-size:8pt; font-weight:400; font-style:norm' \
-              'al;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent' \
-              ':0; text-indent:0px;"><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#808080;">#######' \
-              '############################################<br /># Things to Add in to sp_instructions[\'contents\'] ' \
-              '#<br />###################################################<br /># Simple Button<br /></span><span styl' \
-              'e=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">{</span><span style=" font-family:\'Con' \
-              'solas\'; font-size:9.8pt; color:#a5c261;">\'simple\'</span><span style=" font-family:\'Consolas\'; fon' \
-              't-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:' \
-              '#a5c261;">\'do_something_simple\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color' \
-              ':#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'label\'' \
-              '</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style="' \
-              ' font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'Button Label\'</span><span style=" font-' \
-              'family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\';' \
-              ' font-size:9.8pt; color:#a5c261;">\'tooltip\'</span><span style=" font-family:\'Consolas\'; font-size:' \
-              '9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261' \
-              ';">\'Button tool tip\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">' \
-              '}<br /><br /></span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#808080;"># Frame<b' \
-              'r /></span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">{</span><span styl' \
-              'e=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'label\'</span><span style=" font-fami' \
-              'ly:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; fon' \
-              't-size:9.8pt; color:#a5c261;">\'Frame Label\'</span><span style=" font-family:\'Consolas\'; font-size:' \
-              '9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261' \
-              ';">\'color\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: [</span>' \
-              '<span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#6897bb;">100</span><span style=" font-' \
-              'family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\';' \
-              ' font-size:9.8pt; color:#6897bb;">20</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; co' \
-              'lor:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#6897bb;">20</sp' \
-              'an><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">]</span><span style=" font' \
-              '-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'' \
-              '; font-size:9.8pt; color:#a5c261;">\'image\'</span><span style=" font-family:\'Consolas\'; font-size:9' \
-              '.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;' \
-              '">\'path/to/image.png\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;"' \
-              '>, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'toolTip\'</span><' \
-              'span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-fa' \
-              'mily:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'This is a Frame\'</span><span style=" font-famil' \
-              'y:\'Consolas\'; font-size:9.8pt; color:#cc7832;">,<br /> </span><span style=" font-family:\'Consolas\'' \
-              '; font-size:9.8pt; color:#a5c261;">\'inputWidgets\'</span><span style=" font-family:\'Consolas\'; font' \
-              '-size:9.8pt; color:#a9b7c6;">: []</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color' \
-              ':#cc7832;">,  </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#808080;"># Indici' \
-              'es of the widgets you want to read should be in \'inputs\' below (1st and 3rd widget = [0, 2])<br /> <' \
-              '/span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'buttons\'</span><span' \
-              ' style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: [{</span><span style=" font-fami' \
-              'ly:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'label\'</span><span style=" font-family:\'Consolas' \
-              '\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt;' \
-              ' color:#a5c261;">\'Button\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc78' \
-              '32;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'function\'</s' \
-              'pan><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" fo' \
-              'nt-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'do_something\'</span><span style=" font-fam' \
-              'ily:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; fo' \
-              'nt-size:9.8pt; color:#a5c261;">\'inputs\'</span><span style=" font-family:\'Consolas\'; font-size:9.8p' \
-              't; color:#a9b7c6;">: []</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;"' \
-              '>, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'share\'</span><sp' \
-              'an style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-fami' \
-              'ly:\'Consolas\'; font-size:9.8pt; color:#8888c6;">False</span><span style=" font-family:\'Consolas\'; ' \
-              'font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; col' \
-              'or:#a5c261;">\'toolTip\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;' \
-              '">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'This is a Button' \
-              '.\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">,<br />            ' \
-              '  </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'icon\'</span><span' \
-              ' style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family' \
-              ':\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'path/to/icon.png\'</span><span style=" font-family:' \
-              '\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-s' \
-              'ize:9.8pt; color:#a5c261;">\'color\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; co' \
-              'lor:#a9b7c6;">: [</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#6897bb;">40</s' \
-              'pan><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" fo' \
-              'nt-family:\'Consolas\'; font-size:9.8pt; color:#6897bb;">40</span><span style=" font-family:\'Consolas' \
-              '\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt;' \
-              ' color:#6897bb;">40</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">]}]' \
-              '}  </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#808080;"># Other buttons can' \
-              ' be added to the list if desired<br /><br />################<br /># inputWidgets #<br />##############' \
-              '##<br /># Stretch<br /></span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;"' \
-              '>{</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'type\'</span><span' \
-              ' style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family' \
-              ':\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'stretch\'</span><span style=" font-family:\'Consolas' \
-              '\'; font-size:9.8pt; color:#a9b7c6;">}<br /><br /></span><span style=" font-family:\'Consolas\'; font-' \
-              'size:9.8pt; color:#808080;"># Spacer<br /></span><span style=" font-family:\'Consolas\'; font-size:9.8' \
-              'pt; color:#a9b7c6;">{</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">' \
-              '\'type\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span' \
-              ' style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'spacer\'</span><span style=" fon' \
-              't-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas' \
-              '\'; font-size:9.8pt; color:#a5c261;">\'size\'</span><span style=" font-family:\'Consolas\'; font-size:' \
-              '9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#6897bb' \
-              ';">50</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">}<br /><br /></sp' \
-              'an><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#808080;"># Separator<br /></span><s' \
-              'pan style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">{</span><span style=" font-fami' \
-              'ly:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'type\'</span><span style=" font-family:\'Consolas' \
-              '\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt;' \
-              ' color:#a5c261;">\'separator\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#c' \
-              'c7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'vertical\'' \
-              '</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style="' \
-              ' font-family:\'Consolas\'; font-size:9.8pt; color:#8888c6;">False</span><span style=" font-family:\'Co' \
-              'nsolas\'; font-size:9.8pt; color:#a9b7c6;">}<br /><br /></span><span style=" font-family:\'Consolas\';' \
-              ' font-size:9.8pt; color:#808080;"># LineEdit<br /></span><span style=" font-family:\'Consolas\'; font-' \
-              'size:9.8pt; color:#a9b7c6;">{</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5' \
-              'c261;">\'type\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </spa' \
-              'n><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'lineEdit\'</span><span st' \
-              'yle=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'' \
-              'Consolas\'; font-size:9.8pt; color:#a5c261;">\'label\'</span><span style=" font-family:\'Consolas\'; f' \
-              'ont-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; colo' \
-              'r:#a5c261;">\'Line Edit:\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc783' \
-              '2;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'toolTip\'</spa' \
-              'n><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font' \
-              '-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'This is a Line Edit Input Widget.\'</span><sp' \
-              'an style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-fami' \
-              'ly:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'text\'</span><span style=" font-family:\'Consolas' \
-              '\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt;' \
-              ' color:#a5c261;">\'\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">,' \
-              ' </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'placeholderText\'</' \
-              'span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" f' \
-              'ont-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'Placeholder\'</span><span style=" font-fam' \
-              'ily:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">}<br /><br /></span><span style=" font-family:\'Con' \
-              'solas\'; font-size:9.8pt; color:#808080;"># Selection<br /></span><span style=" font-family:\'Consolas' \
-              '\'; font-size:9.8pt; color:#a9b7c6;">{</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; ' \
-              'color:#a5c261;">\'type\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;' \
-              '">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'selection\'</spa' \
-              'n><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font' \
-              '-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'label\'</span><span style=" font-family:\'Con' \
-              'solas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9' \
-              '.8pt; color:#a5c261;">\'Selection:\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; co' \
-              'lor:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'tool' \
-              'Tip\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span st' \
-              'yle=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'This is a Selection Input Widget.\'' \
-              '</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style="' \
-              ' font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'text\'</span><span style=" font-family:' \
-              '\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-s' \
-              'ize:9.8pt; color:#a5c261;">\'\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#' \
-              'cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'placehold' \
-              'erText\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span' \
-              ' style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'Placeholder\'</span><span style=' \
-              '" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">}<br /><br /></span><span style=" font-fa' \
-              'mily:\'Consolas\'; font-size:9.8pt; color:#808080;"># SelectionMulti<br /></span><span style=" font-fa' \
-              'mily:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">{</span><span style=" font-family:\'Consolas\'; fo' \
-              'nt-size:9.8pt; color:#a5c261;">\'type\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt;' \
-              ' color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'s' \
-              'electionMulti\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </spa' \
-              'n><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'label\'</span><span style' \
-              '=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Con' \
-              'solas\'; font-size:9.8pt; color:#a5c261;">\'Selection Multi:\'</span><span style=" font-family:\'Conso' \
-              'las\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8' \
-              'pt; color:#a5c261;">\'toolTip\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#' \
-              'a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'This is a' \
-              ' Selection Multi Input Widget.\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:' \
-              '#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'text\'</' \
-              'span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" f' \
-              'ont-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'\'</span><span style=" font-family:\'Conso' \
-              'las\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8' \
-              'pt; color:#a5c261;">\'placeholderText\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt;' \
-              ' color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'P' \
-              'laceholder\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">}<br /><br' \
-              ' /></span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#808080;"># PyNode<br /></spa' \
-              'n><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">{</span><span style=" font-' \
-              'family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'type\'</span><span style=" font-family:\'Conso' \
-              'las\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8' \
-              'pt; color:#a5c261;">\'pyNode\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#c' \
-              'c7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'label\'</s' \
-              'pan><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" fo' \
-              'nt-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'PyNode:\'</span><span style=" font-family:' \
-              '\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-s' \
-              'ize:9.8pt; color:#a5c261;">\'toolTip\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; ' \
-              'color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'Th' \
-              'is is a PyNode Input Widget.\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#c' \
-              'c7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'text\'</sp' \
-              'an><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" fon' \
-              't-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'\'</span><span style=" font-family:\'Consola' \
-              's\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt' \
-              '; color:#a5c261;">\'placeholderText\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; c' \
-              'olor:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'Pla' \
-              'ceholder\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">}<br /><br /' \
-              '></span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#808080;"># PyNodeMulti<br /></' \
-              'span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">{</span><span style=" fo' \
-              'nt-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'type\'</span><span style=" font-family:\'Co' \
-              'nsolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:' \
-              '9.8pt; color:#a5c261;">\'pyNodeMulti\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; ' \
-              'color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'la' \
-              'bel\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span st' \
-              'yle=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'PyNode Multi:\'</span><span style="' \
-              ' font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Conso' \
-              'las\'; font-size:9.8pt; color:#a5c261;">\'toolTip\'</span><span style=" font-family:\'Consolas\'; font' \
-              '-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#' \
-              'a5c261;">\'This is a PyNode Multi Input Widget.\'</span><span style=" font-family:\'Consolas\'; font-s' \
-              'ize:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5' \
-              'c261;">\'text\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </spa' \
-              'n><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'\'</span><span style=" fo' \
-              'nt-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas' \
-              '\'; font-size:9.8pt; color:#a5c261;">\'placeholderText\'</span><span style=" font-family:\'Consolas\';' \
-              ' font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; co' \
-              'lor:#a5c261;">\'Placeholder\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9' \
-              'b7c6;">}<br /><br /></span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#808080;"># ' \
-              'IntSpinner<br /></span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">{</spa' \
-              'n><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'type\'</span><span style=' \
-              '" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Cons' \
-              'olas\'; font-size:9.8pt; color:#a5c261;">\'intSpinner\'</span><span style=" font-family:\'Consolas\'; ' \
-              'font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; col' \
-              'or:#a5c261;">\'label\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">' \
-              ': </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'Int Spinner:\'</sp' \
-              'an><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" fon' \
-              't-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'toolTip\'</span><span style=" font-family:\'' \
-              'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-siz' \
-              'e:9.8pt; color:#a5c261;">\'This is a Int Spinner Input Widget.\'</span><span style=" font-family:\'Con' \
-              'solas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9' \
-              '.8pt; color:#a5c261;">\'value\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#' \
-              'a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#6897bb;">0</span><sp' \
-              'an style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-fami' \
-              'ly:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'min\'</span><span style=" font-family:\'Consolas\'' \
-              '; font-size:9.8pt; color:#a9b7c6;">: -</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; ' \
-              'color:#6897bb;">100</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, <' \
-              '/span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'max\'</span><span sty' \
-              'le=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'C' \
-              'onsolas\'; font-size:9.8pt; color:#6897bb;">100</span><span style=" font-family:\'Consolas\'; font-siz' \
-              'e:9.8pt; color:#a9b7c6;">}<br /><br /></span><span style=" font-family:\'Consolas\'; font-size:9.8pt; ' \
-              'color:#808080;"># FloatSpinner<br /></span><span style=" font-family:\'Consolas\'; font-size:9.8pt; co' \
-              'lor:#a9b7c6;">{</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'typ' \
-              'e\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span styl' \
-              'e=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'floatSpinner\'</span><span style=" fo' \
-              'nt-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas' \
-              '\'; font-size:9.8pt; color:#a5c261;">\'label\'</span><span style=" font-family:\'Consolas\'; font-size' \
-              ':9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c26' \
-              '1;">\'Float Spinner:\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">' \
-              ', </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'toolTip\'</span><s' \
-              'pan style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-fam' \
-              'ily:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'This is a Float Spinner Input Widget.\'</span><sp' \
-              'an style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-fami' \
-              'ly:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'value\'</span><span style=" font-family:\'Consolas' \
-              '\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt;' \
-              ' color:#6897bb;">0</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </' \
-              'span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'min\'</span><span styl' \
-              'e=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: -</span><span style=" font-family:\'C' \
-              'onsolas\'; font-size:9.8pt; color:#6897bb;">100</span><span style=" font-family:\'Consolas\'; font-siz' \
-              'e:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c2' \
-              '61;">\'max\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><' \
-              'span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#6897bb;">100</span><span style=" font-f' \
-              'amily:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">}<br /><br /></span><span style=" font-family:\'C' \
-              'onsolas\'; font-size:9.8pt; color:#808080;"># Check,<br /></span><span style=" font-family:\'Consolas' \
-              '\'; font-size:9.8pt; color:#a9b7c6;">{</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; ' \
-              'color:#a5c261;">\'type\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;' \
-              '">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'check\'</span><s' \
-              'pan style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-fam' \
-              'ily:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'label\'</span><span style=" font-family:\'Consola' \
-              's\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt' \
-              '; color:#a5c261;">\'Check Box:\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:' \
-              '#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'toolTip' \
-              '\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style' \
-              '=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'This is a Check Box Input Widget.\'</s' \
-              'pan><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" fo' \
-              'nt-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'value\'</span><span style=" font-family:\'C' \
-              'onsolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size' \
-              ':9.8pt; color:#8888c6;">False</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9' \
-              'b7c6;">}<br /></span></p></body></html>'
+        txt = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html>' \
+              '<head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</' \
+              'style></head><body style=" font-family:\'MS Shell Dlg 2\'; font-size:8pt; font-weight:400; font-styl' \
+              'e:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-bloc' \
+              'k-indent:0; text-indent:0px;"><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#808080' \
+              ';">###################################################<br /># Things to Add in to sp_instructions[\'' \
+              'contents\'] #<br />###################################################<br /># Simple Button<br /></s' \
+              'pan><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">{</span><span style=" f' \
+              'ont-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'simple\'</span><span style=" font-family' \
+              ':\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; fon' \
+              't-size:9.8pt; color:#a5c261;">\'do_something_simple\'</span><span style=" font-family:\'Consolas\'; ' \
+              'font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; c' \
+              'olor:#a5c261;">\'label\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c' \
+              '6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'Button Label' \
+              '\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span sty' \
+              'le=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'toolTip\'</span><span style=" font' \
+              '-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas' \
+              '\'; font-size:9.8pt; color:#a5c261;">\'Button tool tip\'</span><span style=" font-family:\'Consolas\'' \
+              '; font-size:9.8pt; color:#a9b7c6;">}<br /><br /></span><span style=" font-family:\'Consolas\'; font' \
+              '-size:9.8pt; color:#808080;"># Frame<br /></span><span style=" font-family:\'Consolas\'; font-size:9' \
+              '.8pt; color:#a9b7c6;">{</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261' \
+              ';">\'label\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span' \
+              '><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'Frame Label\'</span><spa' \
+              'n style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-fam' \
+              'ily:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'color\'</span><span style=" font-family:\'Conso' \
+              'las\'; font-size:9.8pt; color:#a9b7c6;">: [</span><span style=" font-family:\'Consolas\'; font-size:' \
+              '9.8pt; color:#6897bb;">100</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7' \
+              '832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#6897bb;">20</span><sp' \
+              'an style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-fa' \
+              'mily:\'Consolas\'; font-size:9.8pt; color:#6897bb;">20</span><span style=" font-family:\'Consolas\';' \
+              ' font-size:9.8pt; color:#a9b7c6;">]</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; c' \
+              'olor:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'i' \
+              'mage\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span' \
+              ' style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'path/to/image.png\'</span><spa' \
+              'n style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-fam' \
+              'ily:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'toolTip\'</span><span style=" font-family:\'Con' \
+              'solas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size' \
+              ':9.8pt; color:#a5c261;">\'This is a Frame\'</span><span style=" font-family:\'Consolas\'; font-size:' \
+              '9.8pt; color:#cc7832;">,<br /> </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color' \
+              ':#a5c261;">\'inputWidgets\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9' \
+              'b7c6;">: []</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">,  </span' \
+              '><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#808080;"># Indicies of the widgets ' \
+              'you want to read should be in \'inputs\' below (1st and 3rd widget = [0, 2])<br /> </span><span styl' \
+              'e=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'buttons\'</span><span style=" font-' \
+              'family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: [{</span><span style=" font-family:\'Consola' \
+              's\'; font-size:9.8pt; color:#a5c261;">\'label\'</span><span style=" font-family:\'Consolas\'; font-s' \
+              'ize:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#' \
+              'a5c261;">\'Button\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">,' \
+              ' </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'function\'</span>' \
+              '<span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font' \
+              '-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'do_something\'</span><span style=" font-fam' \
+              'ily:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; ' \
+              'font-size:9.8pt; color:#a5c261;">\'inputs\'</span><span style=" font-family:\'Consolas\'; font-size:' \
+              '9.8pt; color:#a9b7c6;">: []</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc' \
+              '7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'share\'</' \
+              'span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style="' \
+              ' font-family:\'Consolas\'; font-size:9.8pt; color:#8888c6;">False</span><span style=" font-family:\'' \
+              'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-s' \
+              'ize:9.8pt; color:#a5c261;">\'toolTip\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt' \
+              '; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">' \
+              '\'This is a Button.\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;"' \
+              '>,<br />              </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;' \
+              '">\'icon\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><' \
+              'span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'path/to/icon.png\'</span><' \
+              'span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-' \
+              'family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'color\'</span><span style=" font-family:\'Co' \
+              'nsolas\'; font-size:9.8pt; color:#a9b7c6;">: [</span><span style=" font-family:\'Consolas\'; font-si' \
+              'ze:9.8pt; color:#6897bb;">40</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#c' \
+              'c7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#6897bb;">40</span><' \
+              'span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-' \
+              'family:\'Consolas\'; font-size:9.8pt; color:#6897bb;">40</span><span style=" font-family:\'Consolas\'' \
+              '; font-size:9.8pt; color:#a9b7c6;">]}]}  </span><span style=" font-family:\'Consolas\'; font-size:9' \
+              '.8pt; color:#808080;"># Other buttons can be added to the list if desired<br /><br />###############' \
+              '#<br /># inputWidgets #<br />################<br /># Stretch<br /></span><span style=" font-family:\'' \
+              'Consolas\'; font-size:9.8pt; color:#a9b7c6;">{</span><span style=" font-family:\'Consolas\'; font-s' \
+              'ize:9.8pt; color:#a5c261;">\'type\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; c' \
+              'olor:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'s' \
+              'tretch\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><sp' \
+              'an style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'toolTip\'</span><span style=' \
+              '" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Co' \
+              'nsolas\'; font-size:9.8pt; color:#a5c261;">\'Stretch Widget\'</span><span style=" font-family:\'Cons' \
+              'olas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:' \
+              '9.8pt; color:#a5c261;">\'share\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; colo' \
+              'r:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#8888c6;">False<' \
+              '/span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">}<br /><br /></span><' \
+              'span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#808080;"># Spacer<br /></span><span s' \
+              'tyle=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">{</span><span style=" font-family:' \
+              '\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'type\'</span><span style=" font-family:\'Consolas\'' \
+              '; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt;' \
+              ' color:#a5c261;">\'spacer\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc' \
+              '7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'toolTip\'' \
+              '</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style' \
+              '=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'This is a tip\'</span><span style=" ' \
+              'font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Cons' \
+              'olas\'; font-size:9.8pt; color:#a5c261;">\'share\'</span><span style=" font-family:\'Consolas\'; fon' \
+              't-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; colo' \
+              'r:#8888c6;">False</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, <' \
+              '/span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'size\'</span><span ' \
+              'style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-famil' \
+              'y:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'\'</span><span style=" font-family:\'Consolas\'; ' \
+              'font-size:9.8pt; color:#a9b7c6;">}<br /><br /></span><span style=" font-family:\'Consolas\'; font-si' \
+              'ze:9.8pt; color:#808080;"># Separator<br /></span><span style=" font-family:\'Consolas\'; font-size:' \
+              '9.8pt; color:#a9b7c6;">{</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c26' \
+              '1;">\'type\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span' \
+              '><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'separator\'</span><span ' \
+              'style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-famil' \
+              'y:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'toolTip\'</span><span style=" font-family:\'Conso' \
+              'las\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9' \
+              '.8pt; color:#a5c261;">\'This is a tip\'</span><span style=" font-family:\'Consolas\'; font-size:9.8p' \
+              't; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;"' \
+              '>\'share\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><' \
+              'span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#8888c6;">False</span><span style=" fo' \
+              'nt-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consol' \
+              'as\'; font-size:9.8pt; color:#a5c261;">\'vertical\'</span><span style=" font-family:\'Consolas\'; fo' \
+              'nt-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; col' \
+              'or:#a5c261;">\'\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">}<b' \
+              'r /><br /></span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#808080;"># LineEdit' \
+              '<br /></span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">{</span><span ' \
+              'style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'type\'</span><span style=" font' \
+              '-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas' \
+              '\'; font-size:9.8pt; color:#a5c261;">\'lineEdit\'</span><span style=" font-family:\'Consolas\'; font' \
+              '-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color' \
+              ':#a5c261;">\'label\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">' \
+              ': </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'Line Edit:\'</sp' \
+              'an><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" f' \
+              'ont-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'toolTip\'</span><span style=" font-famil' \
+              'y:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; fo' \
+              'nt-size:9.8pt; color:#a5c261;">\'This is a tip\'</span><span style=" font-family:\'Consolas\'; font-' \
+              'size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:' \
+              '#a5c261;">\'color\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">:' \
+              ' [</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#6897bb;">10</span><span sty' \
+              'le=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'' \
+              'Consolas\'; font-size:9.8pt; color:#6897bb;">20</span><span style=" font-family:\'Consolas\'; font-' \
+              'size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:' \
+              '#6897bb;">30</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">]</span>' \
+              '<span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font' \
+              '-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'share\'</span><span style=" font-family:\'C' \
+              'onsolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-si' \
+              'ze:9.8pt; color:#8888c6;">False</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color' \
+              ':#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'save\'' \
+              '</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span styl' \
+              'e=" font-family:\'Consolas\'; font-size:9.8pt; color:#8888c6;">False</span><span style=" font-family' \
+              ':\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; fon' \
+              't-size:9.8pt; color:#a5c261;">\'text\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt' \
+              '; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">' \
+              '\'\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span s' \
+              'tyle=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'placeholderText\'</span><span st' \
+              'yle=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:' \
+              '\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'Placeholder\'</span><span style=" font-family:\'Con' \
+              'solas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size' \
+              ':9.8pt; color:#a5c261;">\'eval\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; colo' \
+              'r:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#8888c6;">False<' \
+              '/span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=' \
+              '" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'errorIfEmpty\'</span><span style=" fo' \
+              'nt-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consol' \
+              'as\'; font-size:9.8pt; color:#8888c6;">False</span><span style=" font-family:\'Consolas\'; font-size' \
+              ':9.8pt; color:#a9b7c6;">}<br /><br /></span><span style=" font-family:\'Consolas\'; font-size:9.8pt;' \
+              ' color:#808080;"># CmdLineEdit<br /></span><span style=" font-family:\'Consolas\'; font-size:9.8pt; ' \
+              'color:#a9b7c6;">{</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'t' \
+              'ype\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span ' \
+              'style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'cmdLineEdit\'</span><span style' \
+              '=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'C' \
+              'onsolas\'; font-size:9.8pt; color:#a5c261;">\'label\'</span><span style=" font-family:\'Consolas\'; ' \
+              'font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; c' \
+              'olor:#a5c261;">\'Cmd Line Edit:\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; col' \
+              'or:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'too' \
+              'lTip\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span' \
+              ' style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'This is a tip\'</span><span st' \
+              'yle=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:' \
+              '\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'color\'</span><span style=" font-family:\'Consolas\'' \
+              '; font-size:9.8pt; color:#a9b7c6;">: [</span><span style=" font-family:\'Consolas\'; font-size:9.8p' \
+              't; color:#6897bb;">10</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;"' \
+              '>, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#6897bb;">20</span><span st' \
+              'yle=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:' \
+              '\'Consolas\'; font-size:9.8pt; color:#6897bb;">30</span><span style=" font-family:\'Consolas\'; font' \
+              '-size:9.8pt; color:#a9b7c6;">]</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:' \
+              '#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'share\'' \
+              '</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span styl' \
+              'e=" font-family:\'Consolas\'; font-size:9.8pt; color:#8888c6;">False</span><span style=" font-family' \
+              ':\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; fon' \
+              't-size:9.8pt; color:#a5c261;">\'save\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt' \
+              '; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#8888c6;">' \
+              'False</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span ' \
+              'style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'text\'</span><span style=" font' \
+              '-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas' \
+              '\'; font-size:9.8pt; color:#a5c261;">\'\'</span><span style=" font-family:\'Consolas\'; font-size:9.' \
+              '8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261' \
+              ';">\'placeholderText\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;' \
+              '">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'Placeholder\'<' \
+              '/span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=' \
+              '" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'eval\'</span><span style=" font-famil' \
+              'y:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; fo' \
+              'nt-size:9.8pt; color:#8888c6;">False</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; ' \
+              'color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'' \
+              'errorIfEmpty\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </sp' \
+              'an><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#8888c6;">False</span><span style=' \
+              '" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Co' \
+              'nsolas\'; font-size:9.8pt; color:#a5c261;">\'buttonCommand\'</span><span style=" font-family:\'Conso' \
+              'las\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9' \
+              '.8pt; color:#8888c6;">None</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7' \
+              '832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'buttonLabe' \
+              'l\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span st' \
+              'yle=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'Run\'</span><span style=" font-fa' \
+              'mily:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\';' \
+              ' font-size:9.8pt; color:#a5c261;">\'buttonToolTip\'</span><span style=" font-family:\'Consolas\'; fo' \
+              'nt-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; col' \
+              'or:#a5c261;">\'Run the command and return the value\'</span><span style=" font-family:\'Consolas\'; ' \
+              'font-size:9.8pt; color:#a9b7c6;">}<br /><br /></span><span style=" font-family:\'Consolas\'; font-si' \
+              'ze:9.8pt; color:#808080;"># Browse<br /></span><span style=" font-family:\'Consolas\'; font-size:9.8' \
+              'pt; color:#a9b7c6;">{</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;"' \
+              '>\'type\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><s' \
+              'pan style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'browse\'</span><span style=' \
+              '" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Co' \
+              'nsolas\'; font-size:9.8pt; color:#a5c261;">\'label\'</span><span style=" font-family:\'Consolas\'; f' \
+              'ont-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; co' \
+              'lor:#a5c261;">\'Browse:\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc78' \
+              '32;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'toolTip\'</' \
+              'span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style="' \
+              ' font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'This is a tip\'</span><span style=" fo' \
+              'nt-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consol' \
+              'as\'; font-size:9.8pt; color:#a5c261;">\'color\'</span><span style=" font-family:\'Consolas\'; font-' \
+              'size:9.8pt; color:#a9b7c6;">: [</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color' \
+              ':#6897bb;">10</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </spa' \
+              'n><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#6897bb;">20</span><span style=" fo' \
+              'nt-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consol' \
+              'as\'; font-size:9.8pt; color:#6897bb;">30</span><span style=" font-family:\'Consolas\'; font-size:9.' \
+              '8pt; color:#a9b7c6;">]</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;' \
+              '">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'share\'</span>' \
+              '<span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font' \
+              '-family:\'Consolas\'; font-size:9.8pt; color:#8888c6;">False</span><span style=" font-family:\'Conso' \
+              'las\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9' \
+              '.8pt; color:#a5c261;">\'save\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:' \
+              '#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#8888c6;">False</s' \
+              'pan><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" ' \
+              'font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'text\'</span><span style=" font-family:' \
+              '\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font' \
+              '-size:9.8pt; color:#a5c261;">\'\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; col' \
+              'or:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'pla' \
+              'ceholderText\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </sp' \
+              'an><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'Placeholder\'</span><s' \
+              'pan style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-f' \
+              'amily:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'errorIfEmpty\'</span><span style=" font-famil' \
+              'y:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; fo' \
+              'nt-size:9.8pt; color:#8888c6;">False</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; ' \
+              'color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'' \
+              'buttonLabel\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </spa' \
+              'n><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'Browse\'</span><span st' \
+              'yle=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:' \
+              '\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'buttonToolTip\'</span><span style=" font-family:\'C' \
+              'onsolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-si' \
+              'ze:9.8pt; color:#a5c261;">\'Browse for a path\'</span><span style=" font-family:\'Consolas\'; font-s' \
+              'ize:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#' \
+              'a5c261;">\'caption\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">' \
+              ': </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'Select File\'</s' \
+              'pan><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" ' \
+              'font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'filter\'</span><span style=" font-famil' \
+              'y:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; fo' \
+              'nt-size:9.8pt; color:#a5c261;">\'*.*\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt' \
+              '; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">' \
+              '\'fileMode\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span' \
+              '><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'ExistingFile\'</span><sp' \
+              'an style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-fa' \
+              'mily:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'directory\'</span><span style=" font-family:\'' \
+              'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-s' \
+              'ize:9.8pt; color:#a5c261;">\'C:/\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; co' \
+              'lor:#a9b7c6;">}<br /><br /></span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#80' \
+              '8080;"># Selection<br /></span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c' \
+              '6;">{</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'type\'</span>' \
+              '<span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font' \
+              '-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'selection\'</span><span style=" font-family' \
+              ':\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; fon' \
+              't-size:9.8pt; color:#a5c261;">\'label\'</span><span style=" font-family:\'Consolas\'; font-size:9.8p' \
+              't; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;"' \
+              '>\'Selection:\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </s' \
+              'pan><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'toolTip\'</span><span' \
+              ' style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-fami' \
+              'ly:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'This is a tip\'</span><span style=" font-family:' \
+              '\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font' \
+              '-size:9.8pt; color:#a5c261;">\'color\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt' \
+              '; color:#a9b7c6;">: [</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#6897bb;"' \
+              '>10</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span st' \
+              'yle=" font-family:\'Consolas\'; font-size:9.8pt; color:#6897bb;">20</span><span style=" font-family:' \
+              '\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font' \
+              '-size:9.8pt; color:#6897bb;">30</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color' \
+              ':#a9b7c6;">]</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span' \
+              '><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'share\'</span><span styl' \
+              'e=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'' \
+              'Consolas\'; font-size:9.8pt; color:#8888c6;">False</span><span style=" font-family:\'Consolas\'; fon' \
+              't-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; colo' \
+              'r:#a5c261;">\'save\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">' \
+              ': </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#8888c6;">False</span><span ' \
+              'style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-famil' \
+              'y:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'text\'</span><span style=" font-family:\'Consolas' \
+              '\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8p' \
+              't; color:#a5c261;">\'\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832' \
+              ';">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'placeholderTe' \
+              'xt\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span s' \
+              'tyle=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'Placeholder\'</span><span style=' \
+              '" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Co' \
+              'nsolas\'; font-size:9.8pt; color:#a5c261;">\'errorIfEmpty\'</span><span style=" font-family:\'Consol' \
+              'as\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.' \
+              '8pt; color:#8888c6;">False</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7' \
+              '832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'buttonLabe' \
+              'l\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span st' \
+              'yle=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\' &gt; \'</span><span style=" font' \
+              '-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas' \
+              '\'; font-size:9.8pt; color:#a5c261;">\'buttonToolTip\'</span><span style=" font-family:\'Consolas\';' \
+              ' font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; ' \
+              'color:#a5c261;">\'Get Selection\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; col' \
+              'or:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'che' \
+              'ckExisting\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span' \
+              '><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#8888c6;">False</span><span style=" ' \
+              'font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">}<br /><br /></span><span style=" font-fa' \
+              'mily:\'Consolas\'; font-size:9.8pt; color:#808080;"># SelectionMulti<br /></span><span style=" font-' \
+              'family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">{</span><span style=" font-family:\'Consolas\'' \
+              '; font-size:9.8pt; color:#a5c261;">\'type\'</span><span style=" font-family:\'Consolas\'; font-size:' \
+              '9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c2' \
+              '61;">\'selectionMulti\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832' \
+              ';">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'label\'</span' \
+              '><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" fon' \
+              't-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'SelectionMulti:\'</span><span style=" font' \
+              '-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas' \
+              '\'; font-size:9.8pt; color:#a5c261;">\'toolTip\'</span><span style=" font-family:\'Consolas\'; font-' \
+              'size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:' \
+              '#a5c261;">\'This is a tip\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc' \
+              '7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'color\'</' \
+              'span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: [</span><span style=' \
+              '" font-family:\'Consolas\'; font-size:9.8pt; color:#6897bb;">10</span><span style=" font-family:\'Co' \
+              'nsolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-siz' \
+              'e:9.8pt; color:#6897bb;">20</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc' \
+              '7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#6897bb;">30</span><s' \
+              'pan style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">]</span><span style=" font-fa' \
+              'mily:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\';' \
+              ' font-size:9.8pt; color:#a5c261;">\'share\'</span><span style=" font-family:\'Consolas\'; font-size:' \
+              '9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#8888' \
+              'c6;">False</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><' \
+              'span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'save\'</span><span style="' \
+              ' font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Con' \
+              'solas\'; font-size:9.8pt; color:#8888c6;">False</span><span style=" font-family:\'Consolas\'; font-s' \
+              'ize:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#' \
+              'a5c261;">\'text\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: <' \
+              '/span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'\'</span><span styl' \
+              'e=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'' \
+              'Consolas\'; font-size:9.8pt; color:#a5c261;">\'placeholderText\'</span><span style=" font-family:\'C' \
+              'onsolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-si' \
+              'ze:9.8pt; color:#a5c261;">\'Placeholder\'</span><span style=" font-family:\'Consolas\'; font-size:9.' \
+              '8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261' \
+              ';">\'errorIfEmpty\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">:' \
+              ' </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#8888c6;">False</span><span s' \
+              'tyle=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family' \
+              ':\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'buttonLabel\'</span><span style=" font-family:\'Co' \
+              'nsolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-siz' \
+              'e:9.8pt; color:#a5c261;">\' &gt; \'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; c' \
+              'olor:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'b' \
+              'uttonToolTip\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </sp' \
+              'an><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'Get Selection\'</span>' \
+              '<span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font' \
+              '-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'checkExisting\'</span><span style=" font-fa' \
+              'mily:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\';' \
+              ' font-size:9.8pt; color:#8888c6;">False</span><span style=" font-family:\'Consolas\'; font-size:9.8p' \
+              't; color:#a9b7c6;">}<br /><br /></span><span style=" font-family:\'Consolas\'; font-size:9.8pt; colo' \
+              'r:#808080;"># PyNode<br /></span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b' \
+              '7c6;">{</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'type\'</spa' \
+              'n><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" fo' \
+              'nt-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'pyNode\'</span><span style=" font-family:' \
+              '\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font' \
+              '-size:9.8pt; color:#a5c261;">\'label\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt' \
+              '; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">' \
+              '\'PyNode:\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span>' \
+              '<span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'toolTip\'</span><span sty' \
+              'le=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'' \
+              'Consolas\'; font-size:9.8pt; color:#a5c261;">\'This is a tip\'</span><span style=" font-family:\'Co' \
+              'nsolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-siz' \
+              'e:9.8pt; color:#a5c261;">\'color\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; co' \
+              'lor:#a9b7c6;">: [</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#6897bb;">10<' \
+              '/span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=' \
+              '" font-family:\'Consolas\'; font-size:9.8pt; color:#6897bb;">20</span><span style=" font-family:\'Co' \
+              'nsolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-siz' \
+              'e:9.8pt; color:#6897bb;">30</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9' \
+              'b7c6;">]</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><sp' \
+              'an style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'share\'</span><span style=" ' \
+              'font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Cons' \
+              'olas\'; font-size:9.8pt; color:#8888c6;">False</span><span style=" font-family:\'Consolas\'; font-si' \
+              'ze:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a' \
+              '5c261;">\'save\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </' \
+              'span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#8888c6;">False</span><span styl' \
+              'e=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'' \
+              'Consolas\'; font-size:9.8pt; color:#a5c261;">\'text\'</span><span style=" font-family:\'Consolas\'; ' \
+              'font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; c' \
+              'olor:#a5c261;">\'\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">,' \
+              ' </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'placeholderText\'' \
+              '</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style' \
+              '=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'Placeholder\'</span><span style=" fo' \
+              'nt-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consol' \
+              'as\'; font-size:9.8pt; color:#a5c261;">\'errorIfEmpty\'</span><span style=" font-family:\'Consolas\'' \
+              '; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt;' \
+              ' color:#8888c6;">False</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;' \
+              '">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'buttonLabel\'<' \
+              '/span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=' \
+              '" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\' &gt; \'</span><span style=" font-fam' \
+              'ily:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; ' \
+              'font-size:9.8pt; color:#a5c261;">\'buttonToolTip\'</span><span style=" font-family:\'Consolas\'; fon' \
+              't-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; colo' \
+              'r:#a5c261;">\'Get Selection\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#' \
+              'cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'checkEx' \
+              'isting\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><sp' \
+              'an style=" font-family:\'Consolas\'; font-size:9.8pt; color:#8888c6;">False</span><span style=" font' \
+              '-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">}<br /><br /></span><span style=" font-family' \
+              ':\'Consolas\'; font-size:9.8pt; color:#808080;"># PyNodeMulti<br /></span><span style=" font-family:' \
+              '\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">{</span><span style=" font-family:\'Consolas\'; font-' \
+              'size:9.8pt; color:#a5c261;">\'type\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; ' \
+              'color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'' \
+              'pyNodeMulti\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </spa' \
+              'n><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'label\'</span><span sty' \
+              'le=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'' \
+              'Consolas\'; font-size:9.8pt; color:#a5c261;">\'PyNode Multi:\'</span><span style=" font-family:\'Co' \
+              'nsolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-siz' \
+              'e:9.8pt; color:#a5c261;">\'toolTip\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; ' \
+              'color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'' \
+              'This is a tip\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </s' \
+              'pan><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'color\'</span><span s' \
+              'tyle=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: [</span><span style=" font-famil' \
+              'y:\'Consolas\'; font-size:9.8pt; color:#6897bb;">10</span><span style=" font-family:\'Consolas\'; fo' \
+              'nt-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; col' \
+              'or:#6897bb;">20</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </s' \
+              'pan><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#6897bb;">30</span><span style=" ' \
+              'font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">]</span><span style=" font-family:\'Conso' \
+              'las\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9' \
+              '.8pt; color:#a5c261;">\'share\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color' \
+              ':#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#8888c6;">False</' \
+              'span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style="' \
+              ' font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'save\'</span><span style=" font-family' \
+              ':\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; fon' \
+              't-size:9.8pt; color:#8888c6;">False</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; c' \
+              'olor:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'t' \
+              'ext\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span ' \
+              'style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'\'</span><span style=" font-fam' \
+              'ily:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; ' \
+              'font-size:9.8pt; color:#a5c261;">\'placeholderText\'</span><span style=" font-family:\'Consolas\'; f' \
+              'ont-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; co' \
+              'lor:#a5c261;">\'Placeholder\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#' \
+              'cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'errorIf' \
+              'Empty\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><spa' \
+              'n style=" font-family:\'Consolas\'; font-size:9.8pt; color:#8888c6;">False</span><span style=" font-' \
+              'family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'' \
+              '; font-size:9.8pt; color:#a5c261;">\'buttonLabel\'</span><span style=" font-family:\'Consolas\'; fo' \
+              'nt-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; col' \
+              'or:#a5c261;">\' &gt; \'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832' \
+              ';">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'buttonToolTip' \
+              '\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span sty' \
+              'le=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'Get Selection\'</span><span style=' \
+              '" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Co' \
+              'nsolas\'; font-size:9.8pt; color:#a5c261;">\'checkExisting\'</span><span style=" font-family:\'Conso' \
+              'las\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9' \
+              '.8pt; color:#8888c6;">False</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9' \
+              'b7c6;">}<br /><br /></span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#808080;">' \
+              '# IntSpinner<br /></span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">{<' \
+              '/span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'type\'</span><span ' \
+              'style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-famil' \
+              'y:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'intSpinner\'</span><span style=" font-family:\'Co' \
+              'nsolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-siz' \
+              'e:9.8pt; color:#a5c261;">\'label\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; co' \
+              'lor:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'In' \
+              't Spinner:\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span' \
+              '><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'toolTip\'</span><span st' \
+              'yle=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:' \
+              '\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'This is a tip\'</span><span style=" font-family:\'C' \
+              'onsolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-si' \
+              'ze:9.8pt; color:#a5c261;">\'color\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; c' \
+              'olor:#a9b7c6;">: [</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#6897bb;">10' \
+              '</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style' \
+              '=" font-family:\'Consolas\'; font-size:9.8pt; color:#6897bb;">20</span><span style=" font-family:\'C' \
+              'onsolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-si' \
+              'ze:9.8pt; color:#6897bb;">30</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a' \
+              '9b7c6;">]</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><s' \
+              'pan style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'share\'</span><span style="' \
+              ' font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Con' \
+              'solas\'; font-size:9.8pt; color:#8888c6;">False</span><span style=" font-family:\'Consolas\'; font-s' \
+              'ize:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#' \
+              'a5c261;">\'save\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: <' \
+              '/span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#8888c6;">False</span><span sty' \
+              'le=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'' \
+              'Consolas\'; font-size:9.8pt; color:#a5c261;">\'max\'</span><span style=" font-family:\'Consolas\'; ' \
+              'font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; c' \
+              'olor:#6897bb;">99</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, <' \
+              '/span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'min\'</span><span s' \
+              'tyle=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family' \
+              ':\'Consolas\'; font-size:9.8pt; color:#6897bb;">0</span><span style=" font-family:\'Consolas\'; font' \
+              '-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color' \
+              ':#a5c261;">\'value\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">' \
+              ': </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#6897bb;">0</span><span styl' \
+              'e=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'' \
+              'Consolas\'; font-size:9.8pt; color:#a5c261;">\'step\'</span><span style=" font-family:\'Consolas\'; ' \
+              'font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; c' \
+              'olor:#6897bb;">1</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">}<br' \
+              ' /><br /></span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#808080;"># FloatSpin' \
+              'ner<br /></span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">{</span><sp' \
+              'an style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'type\'</span><span style=" f' \
+              'ont-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Conso' \
+              'las\'; font-size:9.8pt; color:#a5c261;">\'floatSpinner\'</span><span style=" font-family:\'Consolas\'' \
+              '; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt' \
+              '; color:#a5c261;">\'label\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9' \
+              'b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'Float Spi' \
+              'nner:\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><spa' \
+              'n style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'toolTip\'</span><span style="' \
+              ' font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Con' \
+              'solas\'; font-size:9.8pt; color:#a5c261;">\'This is a tip\'</span><span style=" font-family:\'Consol' \
+              'as\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.' \
+              '8pt; color:#a5c261;">\'color\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:' \
+              '#a9b7c6;">: [</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#6897bb;">10</spa' \
+              'n><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" fo' \
+              'nt-family:\'Consolas\'; font-size:9.8pt; color:#6897bb;">20</span><span style=" font-family:\'Consol' \
+              'as\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.' \
+              '8pt; color:#6897bb;">30</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6' \
+              ';">]</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span s' \
+              'tyle=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'share\'</span><span style=" font' \
+              '-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas' \
+              '\'; font-size:9.8pt; color:#8888c6;">False</span><span style=" font-family:\'Consolas\'; font-size:9' \
+              '.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c26' \
+              '1;">\'save\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span' \
+              '><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#8888c6;">False</span><span style=" ' \
+              'font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Cons' \
+              'olas\'; font-size:9.8pt; color:#a5c261;">\'max\'</span><span style=" font-family:\'Consolas\'; font-' \
+              'size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:' \
+              '#6897bb;">99</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span' \
+              '><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'min\'</span><span style=' \
+              '" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Co' \
+              'nsolas\'; font-size:9.8pt; color:#6897bb;">0</span><span style=" font-family:\'Consolas\'; font-size' \
+              ':9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c' \
+              '261;">\'value\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </s' \
+              'pan><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#6897bb;">0</span><span style=" f' \
+              'ont-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Conso' \
+              'las\'; font-size:9.8pt; color:#a5c261;">\'step\'</span><span style=" font-family:\'Consolas\'; font-' \
+              'size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:' \
+              '#6897bb;">0.1</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">}<br />' \
+              '<br /></span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#808080;"># CheckBox<br ' \
+              '/></span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">{</span><span styl' \
+              'e=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'type\'</span><span style=" font-fam' \
+              'ily:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; ' \
+              'font-size:9.8pt; color:#a5c261;">\'check\'</span><span style=" font-family:\'Consolas\'; font-size:9' \
+              '.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c26' \
+              '1;">\'label\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </spa' \
+              'n><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'Check Box:\'</span><spa' \
+              'n style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-fam' \
+              'ily:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'toolTip\'</span><span style=" font-family:\'Con' \
+              'solas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size' \
+              ':9.8pt; color:#a5c261;">\'This is a tip\'</span><span style=" font-family:\'Consolas\'; font-size:9.' \
+              '8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261' \
+              ';">\'color\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: [</spa' \
+              'n><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#6897bb;">10</span><span style=" fo' \
+              'nt-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consol' \
+              'as\'; font-size:9.8pt; color:#6897bb;">20</span><span style=" font-family:\'Consolas\'; font-size:9.' \
+              '8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#6897bb' \
+              ';">30</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">]</span><span s' \
+              'tyle=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family' \
+              ':\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'share\'</span><span style=" font-family:\'Consolas' \
+              '\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8p' \
+              't; color:#8888c6;">False</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc783' \
+              '2;">, </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'save\'</span' \
+              '><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" fon' \
+              't-family:\'Consolas\'; font-size:9.8pt; color:#8888c6;">False</span><span style=" font-family:\'Cons' \
+              'olas\'; font-size:9.8pt; color:#cc7832;">, </span><span style=" font-family:\'Consolas\'; font-size:' \
+              '9.8pt; color:#a5c261;">\'value\'</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; colo' \
+              'r:#a9b7c6;">: </span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#8888c6;">False<' \
+              '/span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">}</span></p></body></' \
+              'html>'
+
 
         browser = QtWidgets.QTextBrowser()
         browser.setWordWrapMode(QtGui.QTextOption.NoWrap)
@@ -606,6 +922,7 @@ class EditScriptListDialog(QtWidgets.QDialog):
             name = str(self.table.item(row, 0).text())
             script = str(self.table.item(row, 1).text())
             excluded = self.table.item(row, 1).excluded
+            print name, script
 
             if not name:
                 sys.stdout.write('Name for row {} not set. The tool will make '
