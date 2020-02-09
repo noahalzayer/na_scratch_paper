@@ -10,8 +10,8 @@ www.NoahAlzayer.net
 
 [scratchpaper@noahalzayer.net](mailto:scratchpaper@noahalzayer.net)
 
-This tool was made testing in Maya 2019 and 2018 in both 1080 and 4K resolutions. If any issues crop up with use in 
-other versions of Maya or different resolutions, let me know.
+This tool was made testing in Maya 2019 and 2018 in both 1080 and 4K resolutions in Windows 10. If any issues crop up with use in 
+other versions of Maya, Windows or different resolutions, let me know.
 
 In case the license doesn't fully indicate, there are no strings attached for use, though it would just be kinda be cool if users 
 let me know of any cool unconventional uses they might find or little edits that might worth rolling in to the tool for others.
