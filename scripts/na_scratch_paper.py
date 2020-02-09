@@ -209,7 +209,10 @@ class ScratchPaperWidget(QtWidgets.QMainWindow):
             self.save_prefs()
 
 
-def run():
+def run_maya():
+    """
+    The function to run the window in Maya
+    """
     import maya.OpenMayaUI
     import pymel.core as pm
 
@@ -217,3 +220,14 @@ def run():
         pm.deleteUI('na_scratch_paper')
 
     ScratchPaperWidget(shiboken2.wrapInstance(long(maya.OpenMayaUI.MQtUtil.mainWindow()), QtWidgets.QWidget)).show()
+
+
+def run_others(parent):
+    """
+    For use/adaptation for other programs, this initializes and shows the widget under the "parent"
+    Args:
+        parent (QWidget): The optional parent widget for the widget
+    Returns:
+        widget (ScratchPaperWidget): The newly created widget
+    """
+    return ScratchPaperWidget(parent.show())
