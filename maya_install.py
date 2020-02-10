@@ -3,6 +3,7 @@ import distutils
 import pymel.core as pm
 from PySide2 import QtWidgets
 
+
 def onMayaDroppedPythonFile(*args):
     pass
 
@@ -20,4 +21,4 @@ itm, accepted = QtWidgets.QInputDialog().getItem(None, 'Shelf Button', 'Which Sh
 
 if accepted:
     pm.shelfButton(style="iconOnly", parent=itm, image='na_scratch_paper', label='Scratch Paper',
-                   command='import na_scratch_paper\nreload(na_scratch_paper)\nna_scratch_paper.run_maya()')
+                   command='import na_scratch_paper\nna_scratch_paper.run_maya()')
