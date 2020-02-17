@@ -11,7 +11,7 @@ IMG_DIR = os.path.join(os.path.dirname(__file__), 'images')
 
 # This is the first line that establishes the instructions
 sp_instructions = {'contents': [],
-                   'settings': {'color': [40, 40, 60]}, 'toolTip': 'This is a tip for the entire tab'}
+                   'settings': {'color': [40, 40, 60], 'toolTip': 'This is a tip for the entire tab'}}
 
 
 # This function is the simplest possible in an advanced tab. Only one key required to point to the buton function.

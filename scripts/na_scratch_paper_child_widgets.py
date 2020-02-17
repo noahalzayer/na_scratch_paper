@@ -237,7 +237,7 @@ class AdvQuickRef(QtWidgets.QWidget):
               'r:#8888c6;">False</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#cc7832;">, <' \
               '/span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'size\'</span><span ' \
               'style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a9b7c6;">: </span><span style=" font-famil' \
-              'y:\'Consolas\'; font-size:9.8pt; color:#a5c261;">\'\'</span><span style=" font-family:\'Consolas\'; ' \
+              'y:\'Consolas\'; font-size:9.8pt; color:#6897bb;">10</span><span style=" font-family:\'Consolas\'; ' \
               'font-size:9.8pt; color:#a9b7c6;">}<br /><br /></span><span style=" font-family:\'Consolas\'; font-si' \
               'ze:9.8pt; color:#808080;"># Separator<br /></span><span style=" font-family:\'Consolas\'; font-size:' \
               '9.8pt; color:#a9b7c6;">{</span><span style=" font-family:\'Consolas\'; font-size:9.8pt; color:#a5c26' \

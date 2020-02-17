@@ -8,6 +8,7 @@ This should (theoretically) work in any program with PySide2, though it was desi
 
 import os
 import json
+import webbrowser
 
 from PySide2 import QtWidgets, QtCore
 import shiboken2
@@ -47,7 +48,8 @@ class ScratchPaperWidget(QtWidgets.QMainWindow):
 
         help_menu = menu_bar.addMenu('Help')
         help_menu.addAction('Script Markup Quick-Reference', lambda: child_widgets.AdvQuickRef(self).show())
-        help_menu.addAction('Scratch Paper Documentation')
+        help_menu.addAction('Scratch Paper Documentation',
+                            lambda: webbrowser.open('https://github.com/noahalzayer/na_scratch_paper/wiki'))
 
         # Body
         self.setCentralWidget(QtWidgets.QWidget())

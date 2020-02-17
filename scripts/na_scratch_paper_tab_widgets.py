@@ -139,7 +139,7 @@ class ScriptWidget(QtWidgets.QWidget):
         settings = instructions.get('settings', {})
         saved = self.data.get('saved', {})
 
-        self.setToolTip(instructions.get('toolTip'))
+        self.setToolTip(settings.get('toolTip'))
         self.set_palette(self.scroll.widget(), QtGui.QPalette.Background, rgb=settings.get('color'),
                          image=settings.get('image'))
 
